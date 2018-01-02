@@ -17,16 +17,28 @@ gulp.task('webserver',function(){
       
 	})
 })
+//压缩html
+gulp.task('html',function(){
+   gulp.src('./index.html')
+       .pipe(html({
+            removeComments: true,//清除HTML注释
+            collapseWhitespace:true,//压缩HTML
+            removeScriptTypeAttributes:true,//删除<script>的type="text/javascript"
+            removeStyleLinkTypeAttributes:true,//删除<style>和<link>的type="text/css"
+            minifyJS: true,//压缩页面JS
+            minifyCSS: true//压缩页面CSS
+        })).pipe(gulp.dest('./HTML'))
+})
 
 //压缩css
 gulp.task('css',function(){
    gulp.src('./css/*.css')
        .pipe(css())
-       .pipe(gulp.dest('./css'))
+       .pipe(gulp.dest('./css1'))
 })	
 //压缩js
 gulp.task('js',function(){
    gulp.src('./js/*.js')
        .pipe(js())
-       .pipe(gulp.dest(./js))
+       .pipe(gulp.dest('./js1'))
 })
